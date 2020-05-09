@@ -36,8 +36,15 @@ function clickPressed () {
     display.value = null;
 }
 
-function divisionByZero (opersPressed) {
-const btnzero = document.querySelector('.zero');
-if ( btnzero.addEventListener('click') && 
-)
+
+const btnZero = document.querySelector('.zero');
+btnZero.addEventListener('click', divByZero)
+
+function divByZero (display) {
+
+if (display.value === '/0')
+{
+    btnEqual.preventDefault()
+    alert('Ділити на нуль не можна:)')
+}
 }
