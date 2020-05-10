@@ -5,21 +5,28 @@ const display = document.querySelector('.display');
 let memory = 0;
 
 function memoAddPressed() {
-    memory += display.value;
+    memory += parseFloat(display.value);
 }
 
 const btnMemoSub = document.querySelector('.memoSub');
 btnMemoSub.addEventListener('click', memoSubPressed);
 
 function memoSubPressed() {
-    memory -= display.value;
+    memory -= parseFloat(display.value);
 }
 
 const btnMemoRet = document.querySelector('.return-memo');
 btnMemoRet.addEventListener('click', memoRetPressed);
 
 function memoRetPressed() {
-    display.value = memory;
+    display.value = parseFloat(memory);
+}
+
+const btnMemoClear = document.querySelector('.memoClear');
+btnMemoClear.addEventListener('click', memoClearPressed);
+
+function memoClearPressed () {
+    memory = 0;
 }
 
 const btnOpers = document.querySelectorAll('.opers button');
@@ -45,20 +52,25 @@ function equalPressed() {
 }
 
 const btnClean = document.querySelector('.clean');
-btnClean.addEventListener('click', clickPressed);
+btnClean.addEventListener('click', cleanPressed);
 
-function clickPressed() {
-    display.value = null;
+function cleanPressed() {
+    display.value = "";
 }
 
+const btnBackspace = document.querySelector('.backspace');
+btnBackspace.addEventListener('click', backspacePressed);
 
-const btnZero = document.querySelector('.zero');
-btnZero.addEventListener('click', divByZero)
+function backspacePressed () {
+    display.value = display.value.substring(0, display.value.length-1);
+}
 
-function divByZero(display) {
+const btnDiv = document.querySelector('.div');
+btnDiv.addEventListener('click', divByZero);
 
-    if (display.value === '/0') {
-        btnEqual.preventDefault()
+function divByZero() {
+
+    if (display.value === display.value + '/0') {
         alert('Ділити на нуль не можна')
     }
 }
