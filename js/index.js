@@ -33,7 +33,11 @@ const btnOpers = document.querySelectorAll('.opers button');
 btnOpers.forEach(opers => opers.addEventListener('click', opersPressed));
 
 function opersPressed(ev) {
-    display.value += ev.target.innerText;
+    if (display.value.indexOf('+') === -1 && display.value.indexOf('-') === -1 && display.value.indexOf('*') === -1
+    && display.value.indexOf('/') === -1) {
+      display.value += ev.target.innerText;
+        } 
+   
 
 }
 
@@ -69,11 +73,11 @@ function backspacePressed() {
     display.value = display.value.substring(0, display.value.length - 1);
 }
 
-const btnZero = document.querySelector('.div');
+const btnZero = document.querySelector('.zero');
 btnZero.addEventListener('click', divByZero);
 
 function divByZero() {
-    if (display.value === "/0") {
+    if (display.value === display.value.substring(0, display.value.length - 2) + '/0') {
         alert('Ділити на нуль не можна')
     }
 }
