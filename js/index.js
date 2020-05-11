@@ -6,6 +6,7 @@ let memory = 0;
 
 function memoAddPressed() {
   memory += parseFloat(display.value);
+  display.value = "";
 }
 
 const btnMemoSub = document.querySelector(".memoSub");
@@ -13,6 +14,7 @@ btnMemoSub.addEventListener("click", memoSubPressed);
 
 function memoSubPressed() {
   memory -= parseFloat(display.value);
+  display.value = "";
 }
 
 const btnMemoRet = document.querySelector(".return-memo");
@@ -26,7 +28,8 @@ const btnMemoClear = document.querySelector(".memoClear");
 btnMemoClear.addEventListener("click", memoClearPressed);
 
 function memoClearPressed() {
-  memory = "";
+  memory = 0;
+  display.value = '';
 }
 
 const btnOpers = document.querySelectorAll(".opers button");
