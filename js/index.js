@@ -1,83 +1,85 @@
-const btnMemoAdd = document.querySelector('.memoAdd');
-btnMemoAdd.addEventListener('click', memoAddPressed);
+const btnMemoAdd = document.querySelector(".memoAdd");
+btnMemoAdd.addEventListener("click", memoAddPressed);
 
-const display = document.querySelector('.display');
+const display = document.querySelector(".display");
 let memory = 0;
 
 function memoAddPressed() {
-    memory += parseFloat(display.value);
+  memory += parseFloat(display.value);
 }
 
-const btnMemoSub = document.querySelector('.memoSub');
-btnMemoSub.addEventListener('click', memoSubPressed);
+const btnMemoSub = document.querySelector(".memoSub");
+btnMemoSub.addEventListener("click", memoSubPressed);
 
 function memoSubPressed() {
-    memory -= parseFloat(display.value);
+  memory -= parseFloat(display.value);
 }
 
-const btnMemoRet = document.querySelector('.return-memo');
-btnMemoRet.addEventListener('click', memoRetPressed);
+const btnMemoRet = document.querySelector(".return-memo");
+btnMemoRet.addEventListener("click", memoRetPressed);
 
 function memoRetPressed() {
-    display.value = parseFloat(memory);
+  display.value = parseFloat(memory);
 }
 
-const btnMemoClear = document.querySelector('.memoClear');
-btnMemoClear.addEventListener('click', memoClearPressed);
+const btnMemoClear = document.querySelector(".memoClear");
+btnMemoClear.addEventListener("click", memoClearPressed);
 
 function memoClearPressed() {
-    memory = '';
+  memory = "";
 }
 
-const btnOpers = document.querySelectorAll('.opers button');
-btnOpers.forEach(opers => opers.addEventListener('click', opersPressed));
+const btnOpers = document.querySelectorAll(".opers button");
+btnOpers.forEach((opers) => opers.addEventListener("click", opersPressed));
 
 function opersPressed(ev) {
-    if (display.value.indexOf('+') === -1 && display.value.indexOf('-') === -1 && display.value.indexOf('*') === -1
-    && display.value.indexOf('/') === -1) {
-      display.value += ev.target.innerText;
-        } 
-   
-
+  if (
+    display.value.includes("+") === true ||
+    display.value.includes("-") === true ||
+    display.value.includes("/") === true ||
+    display.value.includes("*") === true
+  ) {
+    display.value = display.value.substring(0, display.value.length - 1);
+  }
+  display.value += ev.target.innerText;
 }
 
-const btnDigits = document.querySelectorAll('.digits button');
-btnDigits.forEach(digit => digit.addEventListener('click', digitPressed));
+const btnDigits = document.querySelectorAll(".digits button");
+btnDigits.forEach((digit) => digit.addEventListener("click", digitPressed));
 
 function digitPressed(ev) {
-    if (display.value === '0') {
-        display.value = ev.target.innerText;
-    } else {
-        display.value += ev.target.innerText;
-    }
+  display.value += ev.target.innerText;
 }
 
-const btnEqual = document.querySelector('.equal');
-btnEqual.addEventListener('click', equalPressed);
+const btnEqual = document.querySelector(".equal");
+btnEqual.addEventListener("click", equalPressed);
 
 function equalPressed() {
-    display.value = (eval(display.value));
+  display.value = eval(display.value);
 }
 
-const btnClean = document.querySelector('.clean');
-btnClean.addEventListener('click', cleanPressed);
+const btnClean = document.querySelector(".clean");
+btnClean.addEventListener("click", cleanPressed);
 
 function cleanPressed() {
-    display.value = "";
+  display.value = "";
 }
 
-const btnBackspace = document.querySelector('.backspace');
-btnBackspace.addEventListener('click', backspacePressed);
+const btnBackspace = document.querySelector(".backspace");
+btnBackspace.addEventListener("click", backspacePressed);
 
 function backspacePressed() {
-    display.value = display.value.substring(0, display.value.length - 1);
+  display.value = display.value.substring(0, display.value.length - 1);
 }
 
-const btnZero = document.querySelector('.zero');
-btnZero.addEventListener('click', divByZero);
+const btnZero = document.querySelector(".zero");
+btnZero.addEventListener("click", divByZero);
 
 function divByZero() {
-    if (display.value === display.value.substring(0, display.value.length - 2) + '/0') {
-        alert('Ділити на нуль не можна')
-    }
+  if (
+    display.value ===
+    display.value.substring(0, display.value.length - 2) + "/0"
+  ) {
+    alert("Ділити на нуль не можна");
+  }
 }
